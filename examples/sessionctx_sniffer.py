@@ -141,7 +141,7 @@ class Sniffer(object):
             print ( "* load servers privatekey for ciphertext decryption (RSA key only): %s"%keyfile)
             session.rsa_load_keys_from_file(keyfile)
 
-            session.print (ed=False)
+            session.printed=False
             self.ssl_session_map[target]=session
         else:
             print ( "!! missing private key")
@@ -161,7 +161,7 @@ class Sniffer(object):
                 return
 
             if p_ssl.haslayer(TLSServerHello):
-                    session.print (ed=False)
+                    session.printed=False)
                     session.crypto.session.master_secret=None
                     session.match_server = source
                     #reset the session and print ( it next time)
@@ -172,7 +172,7 @@ class Sniffer(object):
 
             if session.crypto.session.master_secret and session.printed==False:
                 print ( repr(session))
-                session.print (ed = True)
+                session.printed = True)
 
             print ( "|   %-16s:%-5d => %-16s:%-5d | %s"%(p[IP].src,p[TCP].sport,p[IP].dst,p[TCP].dport,repr(p_ssl)))
             if p.haslayer(TLSCiphertext) or (p.haslayer(TLSAlert) and p.haslayer(Raw)):
