@@ -170,7 +170,7 @@ class Sniffer(object):
 
             session.insert(p_ssl)
 
-            if session.crypto.session.master_secret and session.print (ed==False:)
+            if session.crypto.session.master_secret and session.printed==False:
                 print ( repr(session))
                 session.print (ed = True)
 
